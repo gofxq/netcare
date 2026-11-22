@@ -1,10 +1,3 @@
-/* Fusion Pixel Font, release 2026.11.10. */
-@font-face {
-  font-family: "Fusion Pixel";
-  src: url("/fonts/fusion-pixel/fusion-pixel-12px-monospaced-zh_hans.otf.woff2") format("woff2");
-  font-display: swap;
-}
-
 :root {
   color-scheme: light dark;
   --page: light-dark(#f5f7fa, #10151e);
@@ -27,7 +20,8 @@
   --warn-wash: light-dark(#fcf4e7, #372f25);
   --danger: light-dark(#a23f48, #f2a6ae);
   --shadow: 0 1px 3px light-dark(#20385708, #0002);
-  --mono: "Fusion Pixel", ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --system-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --mono: var(--system-mono);
   --gutter: clamp(1.25rem, 4vw, 3.75rem);
   --wrap: min(1200px, calc(100% - 2 * var(--gutter)));
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -101,7 +95,17 @@ svg { flex: none; }
 .icon-button { min-height: 32px; width: 32px; padding: 0; border-color: transparent; color: var(--muted); background: transparent; }
 .icon-button:hover { background: var(--accent-wash); border-color: transparent; color: var(--accent); }
 .ip-actions { display: inline-flex; align-items: center; gap: 2px; }
-.country-flag { line-height: 1; font-size: 1.1rem; flex: none; }
+/* Flag artwork from country-flag-emoji-polyfill 0.1.10. */
+@font-face {
+  font-family: "Twemoji Country Flags";
+  src: url("/fonts/twemoji-country-flags/TwemojiCountryFlags.woff2") format("woff2");
+  font-display: swap;
+}
+.country-flag {
+  flex: none;
+  font: 1.1rem / 1 "Twemoji Country Flags", "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
+  letter-spacing: normal;
+}
 .country-empty { color: var(--faint); }
 .badge { display: inline-flex; align-items: center; min-height: 20px; padding: 1px 6px; border-radius: 5px; font-size: .76rem; line-height: 1.35; font-weight: 550; color: var(--muted); background: var(--surface-quiet); white-space: nowrap; }
 .badge.domestic { background: var(--blue-wash); color: var(--accent); }

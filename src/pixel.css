@@ -1,7 +1,13 @@
+/* Fusion Pixel Font, release 2026.11.10. */
+@font-face {
+  font-family: "Fusion Pixel";
+  src: url("/fonts/fusion-pixel/fusion-pixel-12px-monospaced-zh_hans.otf.woff2") format("woff2");
+  font-display: swap;
+}
+
 /* Shared pixel geometry keeps the five tools consistent across palettes. */
 :root {
   --pixel-shadow: 3px 3px 0 var(--line-strong);
-  font-family: var(--mono), "PingFang SC", "Microsoft YaHei", monospace;
 }
 
 .app-shell {
@@ -44,6 +50,8 @@
 }
 
 :root[data-palette="lucy"] {
+  --mono: "Fusion Pixel", var(--system-mono);
+  font-family: var(--mono);
   --page: light-dark(#f7f0fa, #0c0915);
   --surface: light-dark(#fffaff, #181223);
   --surface-quiet: light-dark(#f3e8f5, #231a32);
@@ -66,14 +74,37 @@
   --pixel-shadow: 3px 3px 0 light-dark(#cba5cc, #54345e);
 }
 
+/* Use whole multiples of the 12px glyph grid at the default browser text size. */
+:root[data-palette="lucy"] .app-shell {
+  font-size: .75rem;
+
+  & :where(:not(.country-flag)) {
+    font-size: inherit;
+    letter-spacing: normal;
+  }
+
+  & :is(.brand, h2, .home-address-empty, .home-v6 .home-address .mono, .insight-input input) {
+    font-size: 1.5rem;
+  }
+
+  & :is(h1, .home-v4 .home-address .mono) {
+    font-size: 2.25rem;
+  }
+
+  & .diag-count, & .insight-table td[data-label]::before {
+    font-size: .75rem;
+  }
+
+  @media (max-width: 600px) {
+    & :is(h1, .home-v4 .home-address .mono) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 [data-palette="lucy"] .masthead {
   border-bottom-color: var(--accent);
   box-shadow: 0 3px 0 light-dark(#f0d1e4, #311b36);
-}
-
-[data-palette="lucy"] .brand {
-  color: var(--ink);
-  text-shadow: 2px 2px 0 light-dark(#ecc2dc, #963b78);
 }
 
 [data-palette="lucy"] .home-v4 {
