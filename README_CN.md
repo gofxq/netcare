@@ -1,10 +1,10 @@
-<h1 align="center">
-  <img src="./docs/assets/netcare-banner.svg" alt="NetCare" width="1080">
-</h1>
+<h1 align="center">NetCare</h1>
 
 <p align="center"><a href="./README.md" lang="en">English</a> · <strong>简体中文</strong></p>
 
 **你访问不同网站时，对方看到的是同一个 IP 吗？** 开了分流之后，浏览器访问腾讯和 npm 仓库可能走两个出口。NetCare 直接从浏览器发起探测，把各个目标看到的 IP 列出来，方便你核对代理或 VPN 规则有没有按预期生效。
+
+![NetCare 网络诊断界面](./docs/assets/netcare.demo.png)
 
 ## 快速开始
 

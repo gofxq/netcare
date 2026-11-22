@@ -1,0 +1,99 @@
+/* Shared pixel geometry keeps the five tools consistent across palettes. */
+:root {
+  --pixel-shadow: 3px 3px 0 var(--line-strong);
+  font-family: var(--mono), "PingFang SC", "Microsoft YaHei", monospace;
+}
+
+.app-shell {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.app-shell :is(button, input, summary, progress, .brand-icon, .theme-options, .tool-nav,
+  .nav-link, .badge, .toast, .section-icon, .skeleton, .region-filter, .insight-input,
+  .home-source-mark, .home-overview, .home-panel, .home-protocol, .diag-panel),
+.app-shell .home-switch > span,
+.app-shell .home-switch > span::before,
+.app-shell .home-connection i {
+  border-radius: 0;
+}
+
+.brand-icon {
+  object-fit: cover;
+  image-rendering: pixelated;
+  outline: 1px solid var(--accent);
+}
+
+.app-shell :is(.home-overview, .home-panel, .diag-panel, .theme-options, .toast) {
+  box-shadow: var(--pixel-shadow);
+}
+
+.app-shell .page-heading h1 {
+  letter-spacing: .025em;
+  border-inline-start: 6px solid var(--accent);
+  padding-inline-start: 12px;
+}
+
+.page-heading h1::after {
+  content: "";
+  display: inline-block;
+  width: .36em;
+  height: .16em;
+  margin-inline-start: .25em;
+  background: var(--teal);
+}
+
+:root[data-palette="lucy"] {
+  --page: light-dark(#f7f0fa, #0c0915);
+  --surface: light-dark(#fffaff, #181223);
+  --surface-quiet: light-dark(#f3e8f5, #231a32);
+  --ink: light-dark(#2e1733, #f5edff);
+  --body: light-dark(#432f48, #e4d9f3);
+  --muted: light-dark(#69546d, #c2b1d4);
+  --faint: light-dark(#68566e, #a896be);
+  --line: light-dark(#d7c4da, #443452);
+  --line-strong: light-dark(#ad91b3, #715684);
+  --accent: light-dark(#992768, #fa83c5);
+  --accent-solid: light-dark(#992768, #ff86c8);
+  --accent-on-solid: light-dark(#ffffff, #210b20);
+  --accent-wash: light-dark(#f9e0f0, #3a1d36);
+  --blue-wash: light-dark(#eee6fc, #29233f);
+  --teal: light-dark(#006a70, #66f3ef);
+  --teal-wash: light-dark(#d9f4f0, #133234);
+  --warn: light-dark(#824900, #ffcd91);
+  --warn-wash: light-dark(#f9ebdc, #392a20);
+  --danger: light-dark(#9e324a, #ffa2ac);
+  --pixel-shadow: 3px 3px 0 light-dark(#cba5cc, #54345e);
+}
+
+[data-palette="lucy"] .masthead {
+  border-bottom-color: var(--accent);
+  box-shadow: 0 3px 0 light-dark(#f0d1e4, #311b36);
+}
+
+[data-palette="lucy"] .brand {
+  color: var(--ink);
+  text-shadow: 2px 2px 0 light-dark(#ecc2dc, #963b78);
+}
+
+[data-palette="lucy"] .home-v4 {
+  background: linear-gradient(90deg, #201127 20%, #24152beb 57%, #24152ba8),
+    url('./lucy-portrait.jpg') right 26% / auto 160% no-repeat, #201127;
+}
+
+[data-palette="lucy"] .home-protocol-globe { display: none; }
+[data-palette="lucy"] .home-v4 :is(.button, .icon-button) { background: #3a1d36; }
+[data-palette="lucy"] .home-protocol-head h2 { color: var(--teal); }
+[data-palette="lucy"] .home-v4 .home-protocol-head h2 { color: #fa83c5; }
+[data-palette="lucy"] .home-latency-chart .sampled { background: var(--teal); }
+
+.theme-group-label {
+  display: block;
+  padding: 6px 10px 2px;
+  color: var(--muted);
+  font-size: .75rem;
+}
+.theme-options [role="group"] + [role="group"] {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+}

@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Activity, Check, ChevronDown, Globe2, Menu, Monitor, Moon, Network, Route, Search, Server, Sun, X } from 'lucide-react'
+import { Cpu, Check, ChevronDown, Globe2, Menu, Monitor, Moon, Network, Route, Search, Server, Sun, X } from 'lucide-react'
 import { localTools } from './catalog.js'
 import './styles.css'
 import { DnsExit } from './DnsExit.jsx'
@@ -10,42 +10,53 @@ import { MultiExit } from './MultiExit.jsx'
 import { SplitTunnel } from './SplitTunnel.jsx'
 import { currentRoute, Link } from './routing.jsx'
 import './diagnostic-pages.css'
+import './pixel.css'
+import lucyIcon from './lucy-icon.png'
 
 const pages = { '/': Home, '/split-tunnel': SplitTunnel, '/multi': MultiExit, '/dns-exit-lookup': DnsExit, '/query': IPQuery }
 const toolIcons = { globe: Globe2, route: Route, network: Network, search: Search, server: Server }
-const themes = { auto: ['跟随系统', Monitor], light: ['浅色', Sun], dark: ['深色', Moon] }
+const palettes = { lucy: ['Lucy', Cpu], classic: ['经典', Monitor] }
+const modes = { auto: ['跟随系统', Monitor], light: ['浅色', Sun], dark: ['深色', Moon] }
 
 function readTheme() {
   try {
     const saved = localStorage.getItem('netcare-theme')
-    if (Object.hasOwn(themes, saved)) return saved
+    if (saved === 'cyberpunk') return { palette: 'lucy', mode: 'dark' }
+    if (saved === 'light' || saved === 'dark') return { palette: 'classic', mode: saved }
+    const [palette, mode] = (saved || '').split('/')
+    if (Object.hasOwn(palettes, palette) && Object.hasOwn(modes, mode)) return { palette, mode }
   } catch {
-    // The theme still works when storage is unavailable.
+    // Storage is optional.
   }
-  return 'auto'
+  return { palette: 'lucy', mode: 'dark' }
 }
 
 function ThemePicker() {
-  const [theme, setTheme] = useState(readTheme)
+  const [{ palette, mode }, setTheme] = useState(readTheme)
   const details = useRef(null)
   const summary = useRef(null)
-  const [label, Icon] = themes[theme]
+  const [label, Icon] = palettes[palette]
 
   useLayoutEffect(() => {
-    document.documentElement.dataset.theme = theme
+    document.documentElement.dataset.palette = palette
+    document.documentElement.dataset.theme = mode
     try {
-      localStorage.setItem('netcare-theme', theme)
+      localStorage.setItem('netcare-theme', `${palette}/${mode}`)
     } catch {
       // Storage is optional.
     }
-  }, [theme])
+  }, [palette, mode])
 
   useEffect(() => {
     const dismiss = (event) => {
       if (details.current && !details.current.contains(event.target)) details.current.open = false
     }
     window.addEventListener('pointerdown', dismiss)
-    return () => window.removeEventListener('pointerdown', dismiss)
+    window.addEventListener('focusin', dismiss)
+    return () => {
+      window.removeEventListener('pointerdown', dismiss)
+      window.removeEventListener('focusin', dismiss)
+    }
   }, [])
 
   const close = () => {
@@ -55,17 +66,25 @@ function ThemePicker() {
 
   return (
     <details className="theme-picker" ref={details}
-      onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) event.currentTarget.open = false }}
       onKeyDown={(event) => { if (event.key === 'Escape' && details.current.open) close() }}>
-      <summary ref={summary} className="theme-trigger" aria-label="显示主题" title={`显示主题 · ${label}`}>
+      <summary ref={summary} className="theme-trigger" aria-label="显示主题" title={`${label} · ${modes[mode][0]}`}>
         <Icon size={17} aria-hidden="true" /><span>{label}</span><ChevronDown size={14} aria-hidden="true" />
       </summary>
       <div className="theme-options" aria-label="显示主题">
-        {Object.entries(themes).map(([key, [name, ModeIcon]]) => (
-          <button type="button" aria-pressed={key === theme} key={key} onClick={() => { setTheme(key); close() }}>
-            <ModeIcon size={16} aria-hidden="true" /> {name}
-            {key === theme && <Check className="theme-check" size={15} aria-hidden="true" />}
-          </button>
+        {[
+          ['主题', palettes, palette, (value) => setTheme({ palette: value, mode })],
+          ['外观', modes, mode, (value) => setTheme({ palette, mode: value })],
+        ].map(([group, options, selected, select]) => (
+          <div key={group} role="group" aria-label={group}>
+            <strong className="theme-group-label">{group}</strong>
+            {Object.entries(options).map(([key, [name, OptionIcon]]) => (
+              <button type="button" aria-pressed={selected === key} key={key}
+                onClick={() => { select(key); close() }}>
+                <OptionIcon size={16} aria-hidden="true" /> {name}
+                {key === selected && <Check className="theme-check" size={15} aria-hidden="true" />}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </details>
@@ -111,7 +130,7 @@ function AppHeader({ path }) {
     }}>
       <div className="masthead-inner">
         <Link href="/" className="brand" aria-label="NetCare 首页">
-          <span className="brand-icon"><Activity size={23} strokeWidth={2.5} aria-hidden="true" /></span>
+          <img className="brand-icon" src={lucyIcon} width="34" height="34" alt="" />
           NetCare
         </Link>
         <nav ref={nav} id="tool-navigation" className={`tool-nav${open ? ' is-open' : ''}`} aria-label="网络工具">

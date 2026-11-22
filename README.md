@@ -1,10 +1,10 @@
-<h1 align="center">
-  <img src="./docs/assets/netcare-banner.svg" alt="NetCare" width="1080">
-</h1>
+<h1 align="center">NetCare</h1>
 
 <p align="center"><strong>English</strong> · <a href="./README_CN.md" lang="zh-CN">简体中文</a></p>
 
 **Which IP does a website see when you connect?** With split tunneling, your browser can reach Tencent through one exit and the npm registry through another. NetCare runs probes from your browser so you can check your proxy or VPN rules against the addresses each destination actually sees.
+
+![NetCare network diagnostics dashboard](./docs/assets/netcare.demo.png)
 
 ## Quick start
 
