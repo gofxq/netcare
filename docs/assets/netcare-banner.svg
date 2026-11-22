@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="236" viewBox="0 0 1080 236"
+     role="img" aria-labelledby="title description">
+  <title id="title">NetCare</title>
+  <desc id="description">The NetCare heartbeat emblem beside a browser connected to IPv4, IPv6 and DNS.</desc>
+  <defs>
+    <linearGradient id="surface" x2="1" y2=".2" gradientUnits="objectBoundingBox">
+      <stop stop-color="#192941"/>
+      <stop offset=".55" stop-color="#111e30"/>
+      <stop offset="1" stop-color="#152e36"/>
+    </linearGradient>
+    <linearGradient id="icon" x2=".75" y2="1">
+      <stop stop-color="#3d73eb"/>
+      <stop offset="1" stop-color="#2454cc"/>
+    </linearGradient>
+    <pattern id="grid" width="23" height="23" patternUnits="userSpaceOnUse">
+      <path d="M23 0H0V23" fill="none" stroke="#98c5e6" stroke-opacity=".12"/>
+    </pattern>
+    <linearGradient id="grid-fade">
+      <stop offset=".32" stop-color="#000"/>
+      <stop offset=".58" stop-color="#fff"/>
+      <stop offset="1" stop-color="#bbb"/>
+    </linearGradient>
+    <mask id="grid-mask">
+      <rect width="1080" height="236" fill="url(#grid-fade)"/>
+    </mask>
+    <clipPath id="frame"><rect width="1080" height="236" rx="17"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1080" height="236" fill="url(#surface)"/>
+    <rect width="1080" height="236" fill="url(#grid)" mask="url(#grid-mask)"/>
+    <g fill="none" stroke="#91b5ca" stroke-width="1.5" opacity=".4">
+      <path d="M526 23h6m-3-3v6m503-3h6m-3-3v6M526 207h6m-3-3v6m503-3h6m-3-3v6"/>
+    </g>
+  </g>
+
+  <g transform="translate(58 71)">
+    <rect width="94" height="94" rx="26" fill="url(#icon)"/>
+    <!-- Lucide Activity icon. ISC License.
+         Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT).
+         All other copyright (c) for Lucide are held by Lucide Contributors 2022.
+         Permission to use, copy, modify, and/or distribute this software for any purpose with or
+         without fee is hereby granted, provided that the above copyright notice and this permission
+         notice appear in all copies.
+         THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+         SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+         THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY
+         DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+         CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+         OR PERFORMANCE OF THIS SOFTWARE. -->
+    <path transform="translate(17 17) scale(2.5)"
+          d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"
+          fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="174" y="145" fill="#f2f6fd" font-family="Inter, Helvetica, Arial, sans-serif"
+        font-size="77" font-weight="700" letter-spacing="-3.5">NetCare</text>
+
+  <!-- The browser connects to three labeled diagnostic paths. -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="3">
+      <path d="M708 118h15q6 0 11-5l43-43q5-5 12-5h84" stroke="#a5c1ff"/>
+      <path d="M708 118h165" stroke="#83d6ea"/>
+      <path d="M708 118h15q6 0 11 5l43 43q5 5 12 5h84" stroke="#88d9bc"/>
+      <path d="M659 118h49" stroke="#c0d2e7"/>
+    </g>
+    <circle cx="708" cy="118" r="5" fill="#152437" stroke="#c0d2e7" stroke-width="2"/>
+    <rect x="559" y="77" width="100" height="82" rx="11" fill="#20354e" stroke="#b1c7e0" stroke-width="2.5"/>
+    <path d="M560 97h98" stroke="#8da7c5" stroke-width="2"/>
+    <path d="M569 87h2m5 0h2m5 0h2" stroke="#a5c1ff" stroke-width="3"/>
+    <g transform="translate(609 127)" stroke="#c4d5e9" stroke-width="2">
+      <circle r="16"/><ellipse rx="7" ry="16"/><path d="M-15 0h30"/>
+    </g>
+    <g stroke-width="2.5" fill="#192c3d">
+      <circle cx="880" cy="65" r="7" stroke="#a5c1ff"/>
+      <circle cx="880" cy="118" r="7" stroke="#83d6ea"/>
+      <circle cx="880" cy="171" r="7" stroke="#88d9bc"/>
+    </g>
+  </g>
+  <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-weight="600" font-size="28">
+    <text x="907" y="74" fill="#c2d5ff">IPv4</text>
+    <text x="907" y="127" fill="#a7e5f3">IPv6</text>
+    <text x="907" y="180" fill="#a6e7d0">DNS</text>
+  </g>
+</svg>
