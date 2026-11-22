@@ -1,0 +1,22 @@
+{
+  "name": "netcare",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/build-routes.js",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "mmdb-lib": "^3.0.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "vite": "^7.3.0"
+  }
+}
